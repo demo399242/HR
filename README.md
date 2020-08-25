@@ -44,8 +44,11 @@ You're given a sorted index array that contains no keys. The array contains only
 **Рекурсивное решение:**
 
 ```js
+// Вспомогательная функция, на вход подается 
+// массив arr, искомое значение x, интервал [l,r], направление сортировки desc 
 function helper (arr, x, l, r, desc) {
   if (l >= r) return false
+  // находим середину интервала
   const m = Math.floor(l + (r - l) / 2)
   if (arr[m] == x) return true
   else if (arr[m] > x && !desc || arr[m] < x && desc)
@@ -205,8 +208,10 @@ Devise a method for applying the exclusion list against the file list WITHOUT ne
 
 ```js
 
+// Путь является директорией, если последний символ слеш
 const isDirectory = path => path.slice(-1)==="/"
 
+// Функция для фильтрации
 const excludeFilter = (items) => file => {
   let result = true
   items.forEach(item => {
@@ -219,6 +224,7 @@ const excludeFilter = (items) => file => {
   return result
 }
 
+// Исходные файлы
 const files = [
   '/src/common/api.js',
   '/src/common/preferences.js',
@@ -227,11 +233,13 @@ const files = [
   '/src/assets/apple-touch-icon-57.png',
 ];
 
+// Правила исключений
 const exclude = [
   '/src/styles/',
   '/src/assets/apple-touch-icon-57.png',
 ];
 
+// Пропускаем файлы через фильтр
 const filteredFiles = files.filter(excludeFilter(exclude))
 console.log(filteredFiles)
 ```
