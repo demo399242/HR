@@ -15,7 +15,7 @@ function validateString(str) {
 
 QA has come to you and said that this works great for strings like "I love superman", but an exception is generated for strings like "Superman is awesome!", which should not happen. Explain why this occurs, and show how you would solve this issue (you must use `indexOf()` in your answer).
 
-####ОТВЕТ:
+#### ОТВЕТ:
 
 Если подстрока находится в самой первой позиции, то indexOf() возвращает 0, что является falsy-значением.
 
@@ -66,7 +66,7 @@ Write a function that takes a phone number in any form and formats it using a de
 
 *Note:* This question CAN be solved using a regular expression, but one is not REQUIRED as a solution. Focus instead on cleanliness and effectiveness of the code, and take into account phone numbers that may not pass a sanity check.
 
-####Ответ:
+#### Ответ:
 
 Как я понял:
 1. не используем регулярные выражения;
@@ -131,7 +131,7 @@ function fizzBuzz(start = 1, stop = 100)
 }
 ```
 
-####Ответ:
+#### Ответ:
 
 ```js
 describe("Test for fizzBuzz()", function() {
@@ -201,7 +201,7 @@ For example, you'll want to exclude the styles directory (and all files in it), 
 
 Devise a method for applying the exclusion list against the file list WITHOUT nested `forEach()` loops.
 
-####Ответ:
+#### Ответ:
 
 ```js
 
@@ -250,7 +250,7 @@ Write database queries:
 
 What constraints need these tables for data consistency?
 
-####Ответ:
+#### Ответ:
 
 1.
 ```sql
@@ -393,7 +393,7 @@ const mappedResult = [{
 ?
 Notice: You can use lodash in this task.
 
-####Ответ:
+#### Ответ:
 
 ```js
 import _ from 'lodash';
@@ -433,7 +433,7 @@ isIterable('hello world'); // true
 isIterable(document.querySelectorAll('.error-message')); // true
 ```
 
-####Ответ:
+#### Ответ:
 
 Можем ориентироваться на наличие ключа *[Symbol.iterator]*.
 Значения *null* и *undefined* обрабатываем отдельно.
