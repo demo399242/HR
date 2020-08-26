@@ -51,7 +51,7 @@ function helper (arr, x, l, r, desc) {
   // находим середину интервала
   const m = Math.floor(l + (r - l) / 2)
   if (arr[m] == x) return true
-  else if (arr[m] > x && !desc || arr[m] < x && desc)
+  if (arr[m] > x && !desc || arr[m] < x && desc)
     return helper(arr, x, l, m, desc)
   else
     return helper(arr, x, m+1, r, desc)
@@ -301,13 +301,18 @@ GROUP BY u.email
 SELECT * 
 FROM (
   SELECT u.id as user_id, email, first_name, last_name, p.id as payment_id, created_at, amount, successful,
-  RANK() OVER (PARTITION BY u.id ORDER BY p.created_at DESC) AS rk
+  ROW_NUMBER() OVER (PARTITION BY u.id ORDER BY p.created_at DESC) AS rn
   FROM payment p
   JOIN user u ON p.user_id = u.id
 ) t
-WHERE  rk <= 5
+WHERE  rn <= 5
 ORDER BY email
 ```
+
+- `user.id` - PRIMARY KEY
+- `user.email` - UNIQUE
+- `payment.id` - PRIMARY KEY
+- `payment.user_id` - FOREIGN KEY
 
 ## Question 7
 
@@ -425,7 +430,7 @@ const mappedResult = Object.entries(_.groupBy(queryResult, "userId"))
     userId: k,
     firstName: v[0].firstName,
     lastName: v[0].lastName,
-    books: v.map(e => ({ bookId: e.bookId, bookTitle: e.bookTitle }))
+    books: v.map(e => ({ id: e.bookId, title: e.bookTitle }))
 }))
 
 console.log(JSON.stringify(mappedResult, null, '   '))
